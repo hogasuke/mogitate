@@ -1,0 +1,13 @@
+.sidebar {
+    background: #e5c4f8;
+    height: 100%;
+    color: #fff;
+    width: 20%;
+}
+
+.main-content {
+    background: #00adb9;
+    height: 100%;
+    color: #fff;
+    width: 80%;
+}
