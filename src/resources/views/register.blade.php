@@ -58,18 +58,18 @@
                     <span class="form__label--required">必須</span>
                 </div>
                 <div class="form__group-content">
-                    <div class="form__input--radio">
+                    <div class="form__input--checkbox">
                         <label>
-                            <input type="radio" name="season" value=1 {{ old('season') == 1 ? 'checked' : '' }}>春
+                            <input type="checkbox" name="seasons[]" value="1" {{ in_array('1', old('seasons', [])) ? 'checked' : '' }}>春
                         </label>
                         <label>
-                            <input type="radio" name="season" value=2 {{ old('season') == 2 ? 'checked' : '' }}>夏
+                            <input type="checkbox" name="seasons[]" value="2" {{ in_array('2', old('seasons', [])) ? 'checked' : '' }}>夏
                         </label>
                         <label>
-                            <input type="radio" name="season" value=3 {{ old('season') == 3 ? 'checked' : '' }}>秋
+                            <input type="checkbox" name="seasons[]" value="3" {{ in_array('3', old('seasons', [])) ? 'checked' : '' }}>秋
                         </label>
                         <label>
-                            <input type="radio" name="season" value=4 {{ old('season') == 4 ? 'checked' : '' }}>冬
+                            <input type="checkbox" name="seasons[]" value="4" {{ in_array('4', old('seasons', [])) ? 'checked' : '' }}>冬
                         </label>
                     </div>
                     <div class="form__error">
