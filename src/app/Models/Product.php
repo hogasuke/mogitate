@@ -9,14 +9,14 @@ class Product extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'season_id',
         'name',
-        'description',
         'price',
+        'image',
+        'description',
     ];
 
-    public function season()
+    public function seasons()
     {
-        return $this->belongsTo(Season::class);
+        return $this->belongsToMany(Season::class);
     }
 }

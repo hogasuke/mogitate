@@ -10,13 +10,25 @@ class ProductController extends Controller
 {
     public function index()
     {
-        $products = Product::with('season')->get();
+        $products = Product::with('seasons')->get();
         $seasons = Season::all();
         return view('index', compact('products', 'seasons'));
     }
 
-    public function register()
+    public function create()
     {
-        return view('register');
+        $seasons = Season::all();
+        return view('register', compact('seasons'));
+    }
+
+    public function store(Request $request)
+    {
+        $product = Product::create([
+            'name'=> $request->name,
+            'price'=> $request->price,
+            'image'=> $request->image,
+            'description'=> $request->description,
+        ]);
+        return redirect('/');
     }
 }
