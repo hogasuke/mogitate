@@ -5,8 +5,8 @@
 @endsection
 
 @section('content')
-    <div class="contact-form__content">
-        <div class="contact-form__heading">
+    <div class="product-register__content">
+        <div class="product-register__heading">
             <h2>商品登録</h2>
         </div>
         <form class="form" action="/register" method="post" enctype="multipart/form-data">
@@ -21,7 +21,9 @@
                         <input type="text" name="name" placeholder="商品名を入力" value="{{ old('name') }}" />
                     </div>
                     <div class="form__error">
-                        <!--バリデーション機能を実装したら記述します。-->
+                        @error('name')
+                            <p>{{ $message }}</p>
+                        @enderror
                     </div>
                 </div>
             </div>
@@ -35,7 +37,9 @@
                         <input type="number" name="price" placeholder="値段を入力" value="{{ old('price') }}" />
                     </div>
                     <div class="form__error">
-                        <!--バリデーション機能を実装したら記述します。-->
+                        @error('price')
+                            <p>{{ $message }}</p>
+                        @enderror
                     </div>
                 </div>
             </div>
@@ -49,7 +53,9 @@
                         <input type="file" name="image"/>
                     </div>
                     <div class="form__error">
-                        <!--バリデーション機能を実装したら記述します。-->
+                        @error('image')
+                            <p>{{ $message }}</p>
+                        @enderror
                     </div>
                 </div>
             </div>
@@ -68,7 +74,9 @@
                         @endforeach
                     </div>
                     <div class="form__error">
-                        <!--バリデーション機能を実装したら記述します。-->
+                        @error('seasons')
+                            <p>{{ $message }}</p>
+                        @enderror
                     </div>
                 </div>
             </div>
@@ -82,7 +90,9 @@
                         <textarea name="description" placeholder="商品の説明を入力">{{ old('description') }}</textarea>
                     </div>
                     <div class="form__error">
-                        <!--バリデーション機能を実装したら記述します。-->
+                        @error('description')
+                            <p>{{ $message }}</p>
+                        @enderror
                     </div>
                 </div>
             </div>

@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Season;
 use App\Models\Product;
-use Illuminate\Http\Request;
+use App\Http\Requests\ProductRequest;
 
 class ProductController extends Controller
 {
@@ -21,12 +21,13 @@ class ProductController extends Controller
         return view('register', compact('seasons'));
     }
 
-    public function store(Request $request)
+    public function store(ProductRequest $request)
     {
+        $imagePath = $request->file('image')->store('products', 'public');
         $product = Product::create([
             'name'=> $request->name,
             'price'=> $request->price,
-            'image'=> 'dummy.png',
+            'image'=> $imagePath,
             'description'=> $request->description,
         ]);
         $product->seasons()->sync($request->seasons);
