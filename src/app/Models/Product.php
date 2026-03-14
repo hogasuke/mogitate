@@ -17,6 +17,6 @@ class Product extends Model
 
     public function seasons()
     {
-        return $this->belongsToMany(Season::class);
+        return $this->belongsToMany(Season::class)->withTimestamps();
     }
 }

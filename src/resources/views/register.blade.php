@@ -9,7 +9,7 @@
         <div class="contact-form__heading">
             <h2>商品登録</h2>
         </div>
-        <form class="form" action="{{ route('products.store') }}" method="post" enctype="multipart/form-data">
+        <form class="form" action="/register" method="post" enctype="multipart/form-data">
             @csrf
             <div class="form__group">
                 <div class="form__group-title">
@@ -18,7 +18,7 @@
                 </div>
                 <div class="form__group-content">
                     <div class="form__input--text">
-                        <input type="text" name="name" placeholder="商品名を入力" />
+                        <input type="text" name="name" placeholder="商品名を入力" value="{{ old('name') }}" />
                     </div>
                     <div class="form__error">
                         <!--バリデーション機能を実装したら記述します。-->
@@ -32,7 +32,7 @@
                 </div>
                 <div class="form__group-content">
                     <div class="form__input--text">
-                        <input type="number" name="price" placeholder="値段を入力" />
+                        <input type="number" name="price" placeholder="値段を入力" value="{{ old('price') }}" />
                     </div>
                     <div class="form__error">
                         <!--バリデーション機能を実装したら記述します。-->
@@ -60,18 +60,12 @@
                 </div>
                 <div class="form__group-content">
                     <div class="form__input--checkbox">
-                        <label>
-                            <input type="checkbox" name="seasons[]" value="1" {{ in_array('1', old('seasons', [])) ? 'checked' : '' }}>春
-                        </label>
-                        <label>
-                            <input type="checkbox" name="seasons[]" value="2" {{ in_array('2', old('seasons', [])) ? 'checked' : '' }}>夏
-                        </label>
-                        <label>
-                            <input type="checkbox" name="seasons[]" value="3" {{ in_array('3', old('seasons', [])) ? 'checked' : '' }}>秋
-                        </label>
-                        <label>
-                            <input type="checkbox" name="seasons[]" value="4" {{ in_array('4', old('seasons', [])) ? 'checked' : '' }}>冬
-                        </label>
+                        @foreach ($seasons as $season)
+                            <label>
+                                <input type="checkbox" name="seasons[]" value="{{ $season->id }}" {{ in_array($season->id, old('seasons', [])) ? 'checked' : '' }}>
+                                {{ $season->name }}
+                            </label>
+                        @endforeach
                     </div>
                     <div class="form__error">
                         <!--バリデーション機能を実装したら記述します。-->

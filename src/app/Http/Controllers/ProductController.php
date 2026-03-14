@@ -26,9 +26,10 @@ class ProductController extends Controller
         $product = Product::create([
             'name'=> $request->name,
             'price'=> $request->price,
-            'image'=> $request->image,
+            'image'=> 'dummy.png',
             'description'=> $request->description,
         ]);
+        $product->seasons()->sync($request->seasons);
         return redirect('/');
     }
 }
