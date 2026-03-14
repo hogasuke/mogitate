@@ -50,7 +50,11 @@
                 </div>
                 <div class="form__group-content">
                     <div class="form__input--text">
-                        <input type="file" name="image"/>
+                        <div class="form__file-preview">
+                            <img id="imagePreview" src="" alt="プレビュー" style="display:none" />
+                            <div id="fileName" class="form__file-name"></div>
+                        </div>
+                        <input type="file" name="image" id="image" accept="image/*" />
                     </div>
                     <div class="form__error">
                         @error('image')
@@ -102,4 +106,28 @@
             </div>
         </form>
     </div>
+    <script>
+        (function () {
+            var input = document.getElementById('image');
+            var preview = document.getElementById('imagePreview');
+            var fileName = document.getElementById('fileName');
+            if (!input) return;
+            input.addEventListener('change', function (e) {
+                var file = this.files && this.files[0];
+                if (!file) {
+                    preview.src = '';
+                    preview.style.display = 'none';
+                    fileName.textContent = '';
+                    return;
+                }
+                var reader = new FileReader();
+                reader.onload = function (ev) {
+                    preview.src = ev.target.result;
+                    preview.style.display = 'block';
+                };
+                reader.readAsDataURL(file);
+                fileName.textContent = file.name;
+            });
+        })();
+    </script>
 @endsection

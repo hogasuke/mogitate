@@ -133,3 +133,24 @@ input[type="file"]::-ms-browse {
 	font-size: 14px;
 }
 
+.form__file-preview {
+	margin-top: 12px;
+	display: flex;
+	align-items: center;
+	gap: 12px;
+}
+
+.form__file-preview img {
+	max-width: 220px;
+	max-height: 160px;
+	object-fit: cover;
+	border-radius: 4px;
+	display: block;
+	box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+}
+
+.form__file-name {
+	color: #666;
+	font-size: 13px;
+}
+
