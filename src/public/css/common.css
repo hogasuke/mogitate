@@ -17,6 +17,10 @@
     font-family: 'Helvetica Neue', Arial, sans-serif;
 }
 
+html, body {
+    height: 100%;
+}
+
 body {
     background: #f6f6f6;
     color: #333;
@@ -25,7 +29,9 @@ body {
 
 .main {
     min-height: calc(100vh - 72px);
+    max-height: calc(100vh - 72px);
     display: flex;
     justify-content: center;
-    padding: 60px 15px;
+    align-items: center;
+    padding: 40px 15px;
 }

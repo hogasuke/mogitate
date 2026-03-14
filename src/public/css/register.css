@@ -6,6 +6,9 @@
 	padding: 48px 64px;
 	border-radius: 6px;
 	box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+	/* Ensure the card fits into smaller viewports (13" laptops). Allow internal scrolling if needed */
+	max-height: calc(100vh - 140px);
+	overflow: auto;
 }
 
 .product-register__heading {
