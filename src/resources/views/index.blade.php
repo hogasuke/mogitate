@@ -49,7 +49,7 @@
                 </div>
 
                 <div class="pagination">
-                    {{ $products->links() }}
+                    {{ $products->links('vendor.pagination.custom') }}
                 </div>
             </div>
         </div>
