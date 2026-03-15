@@ -67,6 +67,7 @@
                 <div class="form__group-title">
                     <span class="form__label--item">季節</span>
                     <span class="form__label--required">必須</span>
+                    <span class="form__label--note">複数選択可</span>
                 </div>
                 <div class="form__group-content">
                     <div class="form__input--checkbox">
