@@ -22,8 +22,8 @@
 
                 <form class="sort-form" action="/" method="get">
                     <h3 class="sort-form__title">価格順で表示</h3>
-                    <select class="sort-form__select" name="sort">
-                        <option value="">価格で並べ替え</option>
+                    <select class="sort-form__select" name="sort" required>
+                        <option value="" disabled selected>価格で並べ替え</option>
                         <option value="asc">低い順に表示</option>
                         <option value="desc">高い順に表示</option>
                     </select>

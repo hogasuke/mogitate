@@ -1,33 +1,36 @@
 .header {
     background: #fff;
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid #e8e8e8;
 }
 
 .header__inner {
+    max-width: 1512px;
     margin: 0 auto;
-    padding: 20px 15px;
-    max-width: 1230px;
+    padding: 10px 20px;
 }
 
 .header__logo {
     color: #f7c600;
     text-decoration: none;
-    font-weight: bold;
-    font-size: 20px;
-    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 1;
+    font-family: 'Times New Roman', serif;
+    font-style: italic;
 }
 
-html, body {
+html,
+body {
     height: 100%;
 }
 
 body {
-    background: #f6f6f6;
+    background: #f8f8f8;
     color: #333;
     font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
 }
 
 .main {
-    min-height: calc(100vh - 72px);
-    padding: 40px 15px;
+    min-height: calc(100vh - 49px);
+    padding: 28px 20px 40px;
 }
