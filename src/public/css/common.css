@@ -29,9 +29,5 @@ body {
 
 .main {
     min-height: calc(100vh - 72px);
-    max-height: calc(100vh - 72px);
-    display: flex;
-    justify-content: center;
-    align-items: center;
     padding: 40px 15px;
 }

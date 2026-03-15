@@ -10,9 +10,8 @@ class ProductController extends Controller
 {
     public function index()
     {
-        $products = Product::with('seasons')->get();
-        $seasons = Season::all();
-        return view('index', compact('products', 'seasons'));
+        $products = Product::paginate(6);
+        return view('index', compact('products'));
     }
 
     public function create()
