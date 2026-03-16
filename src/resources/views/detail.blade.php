@@ -15,14 +15,15 @@
             <div class="product-detail__top">
                 <div class="product-detail__image-area">
                     <div class="product-detail__image-wrapper">
-                        <img class="product-detail__image" src="{{ asset('storage/' . $product->image) }}"
+                        <img class="product-detail__image" id="preview-image" src="{{ asset('storage/' . $product->image) }}"
                             alt="{{ $product->name }}">
                     </div>
                     <div class="product-detail__file">
                         <label class="file-button">
                             ファイルを選択
-                            <input type="file" name="image">
+                            <input type="file" name="image" id="image-input">
                         </label>
+                        <span class="file-name" id="file-name">{{ basename($product->image) }}</span>
                     </div>
                 </div>
                 <div class="product-detail__info">
@@ -39,7 +40,8 @@
                         <div class="season-list">
                             @foreach ($seasons as $season)
                                 <label class="season-list__item">
-                                    <input type="checkbox" {{ $product->seasons->contains('id', $season->id) ? 'checked' : '' }} disabled>
+                                    <input type="checkbox" {{ $product->seasons->contains('id', $season->id) ? 'checked' : '' }}
+                                        disabled>
                                     <span>{{ $season->name }}</span>
                                 </label>
                             @endforeach
@@ -57,18 +59,31 @@
                     <a href="/" class="button button--back">戻る</a>
                     <button type="submit" class="button button--save">変更を保存</button>
                 </div>
-
                 <button type="button" class="button button--delete" aria-label="削除">
-                    <svg class="delete-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                        <path d="M9 4.75H15" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" />
-                        <path d="M6.75 7H17.25" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" />
-                        <path d="M8.25 7.25V18C8.25 18.41 8.59 18.75 9 18.75H15C15.41 18.75 15.75 18.41 15.75 18V7.25"
-                            stroke="currentColor" stroke-width="2.4" stroke-linejoin="round" />
-                        <path d="M10.5 10V15.25" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" />
-                        <path d="M13.5 10V15.25" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" />
+                    <svg class="delete-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" fill="currentColor">
+                        <path
+                            d="M261-120q-24.75 0-42.37-17.63Q201-155.25 201-180v-570h-41v-60h188v-30h264v30h188v60h-41v570q0 24-18 42t-42 18H261Zm438-630H261v570h438v-570ZM367-266h60v-399h-60v399Zm166 0h60v-399h-60v399ZM261-750v570-570Z" />
                     </svg>
                 </button>
             </div>
         </form>
     </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const fileInput = document.getElementById("image-input");
+            const fileName = document.getElementById("file-name");
+            const previewImage = document.getElementById("preview-image");
+            if (!fileInput || !fileName || !previewImage) {
+                return;
+            }
+            fileInput.addEventListener("change", function () {
+                if (fileInput.files.length > 0) {
+                    const file = fileInput.files[0];
+                    fileName.textContent = file.name;
+                    const imageURL = URL.createObjectURL(file);
+                    previewImage.src = imageURL;
+                }
+            });
+        });
+    </script>
 @endsection

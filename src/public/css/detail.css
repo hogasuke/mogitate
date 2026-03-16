@@ -1,14 +1,14 @@
 .product-detail {
-    max-width: 810px;
+    max-width: 780px;
     margin: 0 auto;
-    padding: 44px 20px 72px;
+    padding: 42px 20px 68px;
 }
 
 .product-detail__breadcrumb {
     display: flex;
     align-items: center;
     gap: 6px;
-    margin-bottom: 16px;
+    margin-bottom: 14px;
     font-size: 14px;
     color: #666;
 }
@@ -28,9 +28,9 @@
 
 .product-detail__top {
     display: flex;
-    gap: 28px;
+    gap: 26px;
     align-items: flex-start;
-    margin-bottom: 28px;
+    margin-bottom: 26px;
 }
 
 .product-detail__image-area {
@@ -43,7 +43,6 @@
     height: 300px;
     background: #f8f8f8;
     overflow: hidden;
-    border-radius: 0;
 }
 
 .product-detail__image {
@@ -60,6 +59,12 @@
     margin-top: 14px;
 }
 
+.file-name {
+    font-size: 13px;
+    color: #8a8a8a;
+    line-height: 1;
+}
+
 .product-detail__info {
     flex: 1;
     min-width: 0;
@@ -70,7 +75,7 @@
 }
 
 .form__group--description {
-    margin-bottom: 32px;
+    margin-bottom: 28px;
 }
 
 .form__label {
@@ -98,7 +103,7 @@
 }
 
 .form__textarea {
-    min-height: 150px;
+    min-height: 145px;
     padding: 14px;
     resize: vertical;
     line-height: 1.6;
@@ -107,28 +112,65 @@
 .season-list {
     display: flex;
     flex-wrap: wrap;
-    gap: 14px 18px;
+    gap: 16px 20px;
+    align-items: center;
 }
 
 .season-list__item {
     display: inline-flex;
     align-items: center;
-    gap: 6px;
+    gap: 8px;
     font-size: 15px;
-    color: #333;
+    color: #555;
+    line-height: 1;
+    cursor: default;
 }
 
 .season-list__item input[type="checkbox"] {
-    width: 16px;
-    height: 16px;
+    appearance: none;
+    -webkit-appearance: none;
+    width: 20px;
+    height: 20px;
     margin: 0;
+    border: 2px solid #bcbcbc;
+    border-radius: 50%;
+    background: #fff;
+    position: relative;
+    box-sizing: border-box;
+    flex-shrink: 0;
+}
+
+.season-list__item input[type="checkbox"]:checked {
+    border-color: #4f4f4f;
+    background: #4f4f4f;
+}
+
+.season-list__item input[type="checkbox"]:checked::after {
+    content: "";
+    position: absolute;
+    left: 5px;
+    top: 2px;
+    width: 4px;
+    height: 9px;
+    border: solid #fff;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+
+.season-list__item input[type="checkbox"]:disabled {
+    opacity: 1;
+}
+
+.season-list__item span {
+    display: inline-block;
+    color: #666;
 }
 
 .product-detail__actions {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-top: 18px;
+    margin-top: 14px;
 }
 
 .product-detail__main-buttons {
@@ -142,8 +184,8 @@
     display: inline-flex;
     justify-content: center;
     align-items: center;
-    min-width: 176px;
-    height: 48px;
+    min-width: 170px;
+    height: 46px;
     padding: 0 20px;
     border: none;
     border-radius: 6px;
@@ -166,14 +208,14 @@
 
 .button--delete {
     min-width: auto;
-    width: 32px;
-    height: 32px;
+    width: 56px;
+    height: 56px;
     padding: 0;
     background: transparent;
     border: none;
     display: inline-flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
     flex-shrink: 0;
 }
 
@@ -215,8 +257,8 @@
 }
 
 .delete-icon {
-    width: 30px;
-    height: 30px;
+    width: 42px;
+    height: 42px;
     color: #ff3b30;
     display: block;
 }
@@ -264,5 +306,14 @@
 
     .button {
         min-width: 160px;
+    }
+
+    .season-list {
+        gap: 14px 18px;
+    }
+
+    .season-list__item input[type="checkbox"] {
+        width: 20px;
+        height: 20px;
     }
 }
