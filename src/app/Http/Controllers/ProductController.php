@@ -24,6 +24,12 @@ class ProductController extends Controller
         return view('index', compact('products'));
     }
 
+    public function detail($product)
+    {
+        $product = Product::findOrFail($product);
+        return view('detail', compact('product'));
+    }
+
     public function create()
     {
         $seasons = Season::all();

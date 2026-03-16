@@ -51,18 +51,20 @@
             <div class="main-content">
                 <div class="product-list">
                     @foreach ($products as $product)
-                        <div class="product-card">
-                            <div class="product-card__image-wrapper">
-                                <img
-                                    class="product-card__image"
-                                    src="{{ asset('storage/' . $product->image) }}"
-                                    alt="{{ $product->name }}">
+                        <a href="/products/{{ $product->id }}" class="product-card-link">
+                            <div class="product-card">
+                                <div class="product-card__image-wrapper">
+                                    <img
+                                        class="product-card__image"
+                                        src="{{ asset('storage/' . $product->image) }}"
+                                        alt="{{ $product->name }}">
+                                </div>
+                                <div class="product-card__body">
+                                    <p class="product-card__name">{{ $product->name }}</p>
+                                    <p class="product-card__price">¥{{ number_format($product->price) }}</p>
+                                </div>
                             </div>
-                            <div class="product-card__body">
-                                <p class="product-card__name">{{ $product->name }}</p>
-                                <p class="product-card__price">¥{{ number_format($product->price) }}</p>
-                            </div>
-                        </div>
+                        </a>
                     @endforeach
                 </div>
 

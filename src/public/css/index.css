@@ -177,6 +177,16 @@
     gap: 28px;
 }
 
+.product-card-link {
+    display: block;
+    color: inherit;
+    text-decoration: none;
+}
+
+.product-card-link:hover {
+    opacity: 0.95;
+}
+
 .product-card {
     background: #fff;
     border: 1px solid #ededed;
