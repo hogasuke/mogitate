@@ -32,6 +32,10 @@
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
 }
 
+.product-register-button:hover {
+    opacity: 0.9;
+}
+
 .product__wrapper {
     display: flex;
     gap: 20px;
@@ -64,6 +68,7 @@
     background: #fff;
     box-sizing: border-box;
     font-size: 14px;
+    line-height: 44px;
 }
 
 .search-form__input {
@@ -73,6 +78,12 @@
 
 .search-form__input::placeholder {
     color: #c8c8c8;
+}
+
+.search-form__input:focus,
+.sort-form__select:focus {
+    outline: none;
+    border-color: #d9d9d9;
 }
 
 .search-form__button {
@@ -88,6 +99,10 @@
     cursor: pointer;
 }
 
+.search-form__button:hover {
+    opacity: 0.9;
+}
+
 .sort-form__title {
     margin: 0 0 12px;
     font-size: 24px;
@@ -100,6 +115,7 @@
     border-radius: 6px;
     appearance: none;
     color: #c8c8c8;
+    line-height: normal;
     background-image:
         linear-gradient(45deg, transparent 50%, #b3b3b3 50%),
         linear-gradient(135deg, #b3b3b3 50%, transparent 50%);
@@ -146,6 +162,10 @@
     flex-shrink: 0;
 }
 
+.sort-tag__remove:hover {
+    background: #fff8d9;
+}
+
 .main-content {
     flex: 1;
     min-width: 0;
@@ -153,7 +173,7 @@
 
 .product-list {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(3, 1fr);
     gap: 28px;
 }
 
@@ -197,7 +217,7 @@
 }
 
 .product-card__name {
-    word-break: break-word;
+    overflow-wrap: anywhere;
 }
 
 .product-card__price {
@@ -232,6 +252,11 @@
     font-size: 16px;
     font-weight: 500;
     line-height: 1;
+}
+
+.page-number:hover,
+.page-arrow:hover {
+    background: #fafafa;
 }
 
 .page-number.active {
