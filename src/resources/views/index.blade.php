@@ -7,7 +7,13 @@
 @section('content')
     <div class="product__content">
         <div class="product__heading">
-            <h2 class="product__title">商品一覧</h2>
+            <h2 class="product__title">
+                @if (request('keyword'))
+                    "{{ request('keyword') }}" の商品一覧
+                @else
+                    商品一覧
+                @endif
+            </h2>
             <button class="product-register-button" onclick="location.href='/register'">+ 商品を追加</button>
         </div>
 
@@ -25,10 +31,20 @@
                     <input type="hidden" name="keyword" value="{{ request('keyword') }}">
                     <h3 class="sort-form__title">価格順で表示</h3>
                     <select class="sort-form__select" name="sort" required onchange="this.form.submit()">
-                        <option value=="" disabled {{ request('sort') ? '' : 'selected' }}>価格で並べ替え</option>
+                        <option value="" disabled {{ request('sort') ? '' : 'selected' }}>価格で並べ替え</option>
                         <option value="asc" {{ request('sort') === 'asc' ? 'selected' : '' }}>低い順に表示</option>
                         <option value="desc" {{ request('sort') === 'desc' ? 'selected' : '' }}>高い順に表示</option>
                     </select>
+                    @if (request('sort') === 'asc' || request('sort') === 'desc')
+                        <div class="sort-tag">
+                            <span class="sort-tag__text">
+                                {{ request('sort') === 'asc' ? '低い順に表示' : '高い順に表示' }}
+                            </span>
+                            <a class="sort-tag__remove" href="{{ request('keyword') ? '/?keyword=' . urlencode(request('keyword')) : '/' }}">
+                                ×
+                            </a>
+                        </div>
+                    @endif
                 </form>
             </aside>
 
