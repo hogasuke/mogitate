@@ -26,8 +26,9 @@ class ProductController extends Controller
 
     public function detail($product)
     {
-        $product = Product::findOrFail($product);
-        return view('detail', compact('product'));
+        $product = Product::with('seasons')->findOrFail($product);
+        $seasons = Season::all();
+        return view('detail', compact('product', 'seasons'));
     }
 
     public function create()
