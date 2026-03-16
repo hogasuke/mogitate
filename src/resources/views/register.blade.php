@@ -49,12 +49,15 @@
                     <span class="form__label--required">必須</span>
                 </div>
                 <div class="form__group-content">
-                    <div class="form__input--text">
+                    <div class="form__image-upload">
                         <div class="form__file-preview">
                             <img id="imagePreview" src="" alt="プレビュー" style="display:none" />
+                        </div>
+                        <div class="form__file-row">
+                            <label for="image" class="form__file-button">ファイルを選択</label>
+                            <input type="file" name="image" id="image" accept="image/*" />
                             <div id="fileName" class="form__file-name"></div>
                         </div>
-                        <input type="file" name="image" id="image" accept="image/*" />
                     </div>
                     <div class="form__error">
                         @error('image')
@@ -72,9 +75,10 @@
                 <div class="form__group-content">
                     <div class="form__input--checkbox">
                         @foreach ($seasons as $season)
-                            <label>
+                            <label class="season-item">
                                 <input type="checkbox" name="seasons[]" value="{{ $season->id }}" {{ in_array($season->id, old('seasons', [])) ? 'checked' : '' }}>
-                                {{ $season->name }}
+                                <span class="season-circle"></span>
+                                <span class="season-name">{{ $season->name }}</span>
                             </label>
                         @endforeach
                     </div>
@@ -118,12 +122,14 @@
                 if (!file) {
                     preview.src = '';
                     preview.style.display = 'none';
+                    preview.parentElement.style.display = 'none';
                     fileName.textContent = '';
                     return;
                 }
                 var reader = new FileReader();
                 reader.onload = function (ev) {
                     preview.src = ev.target.result;
+                    preview.parentElement.style.display = 'block';
                     preview.style.display = 'block';
                 };
                 reader.readAsDataURL(file);
