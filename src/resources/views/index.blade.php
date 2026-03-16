@@ -14,18 +14,20 @@
         <div class="product__wrapper">
             <aside class="sidebar">
                 <form class="search-form" action="/" method="get">
+                    <input type="hidden" name="sort" value="{{ request('sort') }}">
                     <div class="search-form__group">
-                        <input class="search-form__input" type="text" name="keyword" placeholder="商品名で検索">
+                        <input class="search-form__input" type="text" name="keyword" placeholder="商品名で検索" value="{{ request('keyword') }}">
                     </div>
                     <button class="search-form__button" type="submit">検索</button>
                 </form>
 
                 <form class="sort-form" action="/" method="get">
+                    <input type="hidden" name="keyword" value="{{ request('keyword') }}">
                     <h3 class="sort-form__title">価格順で表示</h3>
-                    <select class="sort-form__select" name="sort" required>
-                        <option value="" disabled selected>価格で並べ替え</option>
-                        <option value="asc">低い順に表示</option>
-                        <option value="desc">高い順に表示</option>
+                    <select class="sort-form__select" name="sort" required onchange="this.form.submit()">
+                        <option value=="" disabled {{ request('sort') ? '' : 'selected' }}>価格で並べ替え</option>
+                        <option value="asc" {{ request('sort') === 'asc' ? 'selected' : '' }}>低い順に表示</option>
+                        <option value="desc" {{ request('sort') === 'desc' ? 'selected' : '' }}>高い順に表示</option>
                     </select>
                 </form>
             </aside>

@@ -2,15 +2,25 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
 use App\Models\Season;
 use App\Models\Product;
 use App\Http\Requests\ProductRequest;
 
 class ProductController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $products = Product::paginate(6);
+        $query = Product::query();
+        if ($request->filled('keyword')) {
+            $query->where('name', 'like', '%' . $request->keyword . '%');
+        }
+        if ($request->sort === 'asc') {
+            $query->orderBy('price', 'asc');
+        } elseif ($request->sort === 'desc') {
+            $query->orderBy('price', 'desc');
+        }
+        $products = $query->paginate(6)->appends($request->query());
         return view('index', compact('products'));
     }
 
