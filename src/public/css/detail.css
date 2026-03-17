@@ -1,15 +1,15 @@
 .product-detail {
     position: relative;
-    max-width: 780px;
+    max-width: 760px;
     margin: 0 auto;
-    padding: 42px 20px 68px;
+    padding: 36px 20px 48px;
 }
 
 .product-detail__breadcrumb {
     display: flex;
     align-items: center;
     gap: 6px;
-    margin-bottom: 14px;
+    margin-bottom: 12px;
     font-size: 14px;
     color: #666;
 }
@@ -30,16 +30,16 @@
 
 .product-detail__top {
     display: flex;
-    gap: 26px;
+    gap: 24px;
     align-items: flex-start;
-    margin-bottom: 8px;
-    min-height: 410px;
+    margin-bottom: 14px;
+    min-height: 370px;
 }
 
 .product-detail__image-area {
     position: relative;
     width: 360px;
-    height: 410px;
+    height: 370px;
     flex-shrink: 0;
 }
 
@@ -75,7 +75,7 @@
     left: 0;
     bottom: 0;
     width: 100%;
-    min-height: 54px;
+    min-height: 44px;
 }
 
 .product-detail__image-area--error .product-detail__file {
@@ -83,7 +83,7 @@
 }
 
 .product-detail__image-area--error .product-detail__image-errors {
-    top: 44px;
+    top: 40px;
     bottom: auto;
 }
 
@@ -100,16 +100,16 @@
 }
 
 .form__group {
-    margin-bottom: 26px;
+    margin-bottom: 18px;
 }
 
 .form__group--description {
-    margin-bottom: 16px;
+    margin-bottom: 18px;
 }
 
 .form__label {
     display: block;
-    margin-bottom: 10px;
+    margin-bottom: 8px;
     font-size: 16px;
     font-weight: 700;
     color: #333;
@@ -132,7 +132,7 @@
 }
 
 .form__textarea {
-    min-height: 145px;
+    min-height: 120px;
     padding: 14px;
     resize: vertical;
     line-height: 1.6;
@@ -146,7 +146,7 @@
 .season-list {
     display: flex;
     flex-wrap: wrap;
-    gap: 16px 20px;
+    gap: 14px 18px;
     align-items: center;
 }
 
@@ -199,28 +199,29 @@
 .product-detail__actions {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    margin-top: 14px;
+    justify-content: center;
+    margin-top: 4px;
 }
 
 .product-detail__main-buttons {
     display: flex;
     align-items: center;
     gap: 18px;
-    margin: 0 auto;
 }
 
 .product-detail__delete-form {
+    position: absolute;
+    right: 0;
+    bottom: 34px;
     display: flex;
     justify-content: flex-end;
-    margin-top: -48px;
 }
 
 .button {
     display: inline-flex;
     justify-content: center;
     align-items: center;
-    min-width: 170px;
+    min-width: 176px;
     height: 46px;
     padding: 0 20px;
     border: none;
@@ -244,8 +245,8 @@
 
 .button--delete {
     min-width: auto;
-    width: 56px;
-    height: 56px;
+    width: 48px;
+    height: 48px;
     padding: 0;
     background: transparent;
     border: none;
@@ -293,8 +294,8 @@
 }
 
 .delete-icon {
-    width: 42px;
-    height: 42px;
+    width: 36px;
+    height: 36px;
     color: #ff3b30;
     display: block;
 }
@@ -304,21 +305,21 @@
     font-size: 14px;
     font-weight: 700;
     color: #ff6b6b;
-    line-height: 1.4;
+    line-height: 1.35;
 }
 
 .form__error+.form__error {
-    margin-top: 4px;
+    margin-top: 3px;
 }
 
 @media screen and (max-width: 768px) {
     .product-detail {
-        padding: 32px 20px 56px;
+        padding: 28px 20px 48px;
     }
 
     .product-detail__top {
         flex-direction: column;
-        gap: 24px;
+        gap: 20px;
         min-height: auto;
     }
 
@@ -360,28 +361,22 @@
     }
 
     .product-detail__actions {
-        flex-wrap: wrap;
-        gap: 16px;
-        justify-content: center;
+        margin-top: 12px;
     }
 
     .product-detail__main-buttons {
         flex-wrap: wrap;
         justify-content: center;
         gap: 14px;
-        margin: 0;
+    }
+
+    .product-detail__delete-form {
+        position: static;
+        justify-content: center;
+        margin-top: 12px;
     }
 
     .button {
         min-width: 160px;
-    }
-
-    .season-list {
-        gap: 14px 18px;
-    }
-
-    .product-detail__delete-form {
-        justify-content: center;
-        margin-top: 12px;
     }
 }
