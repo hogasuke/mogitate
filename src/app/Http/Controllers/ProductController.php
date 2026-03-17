@@ -69,6 +69,6 @@ class ProductController extends Controller
             'description'=> $request->description,
         ]);
         $product->seasons()->sync($request->seasons);
-        return redirect('/products/register');
+        return redirect('/products');
     }
 }
