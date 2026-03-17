@@ -46,6 +46,13 @@ class ProductController extends Controller
         $product->seasons()->sync($request->seasons ?? []);
         return redirect('/products/' . $product->id);
     }
+
+    public function destroy(Product $product)
+    {
+        $product->seasons()->detach();
+        $product->delete();
+        return redirect('/');
+    }
     public function create()
     {
         $seasons = Season::all();
