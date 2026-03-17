@@ -47,4 +47,23 @@ class ProductRequest extends FormRequest
             'description.max' => '120文字以下で入力してください',
         ];
     }
+
+    public function withValidator($validator)
+    {
+        $validator->after(function ($validator) {
+
+            if (!$this->filled('price')) {
+                $validator->errors()->add('price', '数値で入力してください');
+                $validator->errors()->add('price', '0〜10000円以内で入力してください');
+            }
+
+            if (!$this->hasFile('image')) {
+                $validator->errors()->add('image', '「.png」または「.jpeg」形式でアップロードしてください');
+            }
+
+            if (!$this->filled('description')) {
+                $validator->errors()->add('description', '120文字以下で入力してください');
+            }
+        });
+    }
 }

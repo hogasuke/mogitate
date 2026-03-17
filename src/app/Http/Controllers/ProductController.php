@@ -44,14 +44,14 @@ class ProductController extends Controller
         }
         $product->update($data);
         $product->seasons()->sync($request->seasons ?? []);
-        return redirect('/products/' . $product->id);
+        return redirect('/products' . $product->id);
     }
 
     public function destroy(Product $product)
     {
         $product->seasons()->detach();
         $product->delete();
-        return redirect('/');
+        return redirect('/products');
     }
     public function create()
     {
@@ -69,6 +69,6 @@ class ProductController extends Controller
             'description'=> $request->description,
         ]);
         $product->seasons()->sync($request->seasons);
-        return redirect('/');
+        return redirect('/products/register');
     }
 }

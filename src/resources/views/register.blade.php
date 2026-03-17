@@ -9,7 +9,7 @@
         <div class="product-register__heading">
             <h2>商品登録</h2>
         </div>
-        <form class="form" action="/register" method="post" enctype="multipart/form-data">
+        <form class="form" action="/products/register" method="post" enctype="multipart/form-data">
             @csrf
             <div class="form__group">
                 <div class="form__group-title">
@@ -21,9 +21,9 @@
                         <input type="text" name="name" placeholder="商品名を入力" value="{{ old('name') }}" />
                     </div>
                     <div class="form__error">
-                        @error('name')
+                        @foreach ($errors->get('name') as $message)
                             <p>{{ $message }}</p>
-                        @enderror
+                        @endforeach
                     </div>
                 </div>
             </div>
@@ -37,9 +37,9 @@
                         <input type="number" name="price" placeholder="値段を入力" value="{{ old('price') }}" />
                     </div>
                     <div class="form__error">
-                        @error('price')
+                        @foreach ($errors->get('price') as $message)
                             <p>{{ $message }}</p>
-                        @enderror
+                        @endforeach
                     </div>
                 </div>
             </div>
@@ -60,9 +60,9 @@
                         </div>
                     </div>
                     <div class="form__error">
-                        @error('image')
+                        @foreach ($errors->get('image') as $message)
                             <p>{{ $message }}</p>
-                        @enderror
+                        @endforeach
                     </div>
                 </div>
             </div>
@@ -83,9 +83,9 @@
                         @endforeach
                     </div>
                     <div class="form__error">
-                        @error('seasons')
+                        @foreach ($errors->get('seasons') as $message)
                             <p>{{ $message }}</p>
-                        @enderror
+                        @endforeach
                     </div>
                 </div>
             </div>
@@ -99,9 +99,9 @@
                         <textarea name="description" placeholder="商品の説明を入力">{{ old('description') }}</textarea>
                     </div>
                     <div class="form__error">
-                        @error('description')
+                        @foreach ($errors->get('description') as $message)
                             <p>{{ $message }}</p>
-                        @enderror
+                        @endforeach
                     </div>
                 </div>
             </div>
