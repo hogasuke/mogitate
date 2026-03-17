@@ -15,7 +15,7 @@
         <form class="product-detail__form" action="{{ route('products.update', $product->id) }}" method="post"
             enctype="multipart/form-data">
             @csrf
-            @method('PUT')
+            @method('put')
 
             <div class="product-detail__top">
                 <div class="product-detail__image-area">
@@ -65,7 +65,7 @@
 
             <div class="product-detail__actions">
                 <div class="product-detail__main-buttons">
-                    <a href="/" class="button button--back">戻る</a>
+                    <a href="/products" class="button button--back">戻る</a>
                     <button type="submit" class="button button--save">変更を保存</button>
                 </div>
             </div>

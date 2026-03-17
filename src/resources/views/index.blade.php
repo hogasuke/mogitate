@@ -14,7 +14,7 @@
                     商品一覧
                 @endif
             </h2>
-            <button class="product-register-button" onclick="location.href='/register'">+ 商品を追加</button>
+            <button class="product-register-button" onclick="location.href='/products/register'">+ 商品を追加</button>
         </div>
 
         <div class="product__wrapper">
@@ -51,7 +51,7 @@
             <div class="main-content">
                 <div class="product-list">
                     @foreach ($products as $product)
-                        <a href="/products/{{ $product->id }}" class="product-card-link">
+                        <a href="/products/detail/{{ $product->id }}" class="product-card-link">
                             <div class="product-card">
                                 <div class="product-card__image-wrapper">
                                     <img
