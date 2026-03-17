@@ -11,7 +11,9 @@
             <span>></span>
             <span>{{ $product->name }}</span>
         </div>
-        <form class="product-detail__form">
+        <form class="product-detail__form" action="{{ route('products.update', $product->id) }}" method="post" enctype="multipart/form-data">
+            @csrf
+            @method('put')
             <div class="product-detail__top">
                 <div class="product-detail__image-area">
                     <div class="product-detail__image-wrapper">
@@ -40,8 +42,7 @@
                         <div class="season-list">
                             @foreach ($seasons as $season)
                                 <label class="season-list__item">
-                                    <input type="checkbox" {{ $product->seasons->contains('id', $season->id) ? 'checked' : '' }}
-                                        disabled>
+                                    <input type="checkbox" name="seasons[]" value="{{ $season->id }}" {{ $product->seasons->contains('id', $season->id) ? 'checked' : '' }}>
                                     <span>{{ $season->name }}</span>
                                 </label>
                             @endforeach

@@ -31,6 +31,21 @@ class ProductController extends Controller
         return view('detail', compact('product', 'seasons'));
     }
 
+    public function update(ProductRequest $request, Product $product)
+    {
+        $data = [
+            'name' => $request->name,
+            'price' => $request->price,
+            'description' => $request->description,
+        ];
+        if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('products', 'public');
+            $data['image'] = $imagePath;
+        }
+        $product->update($data);
+        $product->seasons()->sync($request->seasons ?? []);
+        return redirect('/products/' . $product->id);
+    }
     public function create()
     {
         $seasons = Season::all();
