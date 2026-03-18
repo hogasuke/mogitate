@@ -7,7 +7,7 @@
 @section('content')
     <div class="product-detail">
         <div class="product-detail__breadcrumb">
-            <a href="{{ route('products.index') }}">商品一覧</a>
+            <a href="/products">商品一覧</a>
             <span>></span>
             <span>{{ $product->name }}</span>
         </div>
@@ -18,26 +18,24 @@
             @method('PUT')
 
             <div class="product-detail__top">
-                <div class="product-detail__image-area {{ session()->hasOldInput() ? 'product-detail__image-area--error' : '' }}">
-                    <div class="product-detail__image-wrapper {{ session()->hasOldInput() ? 'product-detail__image-wrapper--empty' : '' }}">
+                <div class="product-detail__image-area {{ $errors->has('image') ? 'product-detail__image-area--error' : '' }}">
+                    <div class="product-detail__image-wrapper {{ $errors->has('image') ? 'product-detail__image-wrapper--empty' : '' }}">
                         <img
                             class="product-detail__image"
                             id="preview-image"
-                            src="{{ session()->hasOldInput() ? '' : asset('storage/' . $product->image) }}"
-                            alt="{{ session()->hasOldInput() ? '' : $product->name }}">
+                            src="{{ $errors->has('image') ? '' : asset('storage/' . $product->image) }}"
+                            alt="{{ $errors->has('image') ? '' : $product->name }}">
                     </div>
 
                     <div class="product-detail__file">
                         <label class="file-button">
                             ファイルを選択
-                            <input type="file" name="image" id="image-input">
+                            <input type="file" name="image" id="image-input" accept=".png,.jpeg,image/png,image/jpeg">
                         </label>
-                        <span class="file-name" id="file-name">
-                            {{ session()->hasOldInput() ? '' : basename($product->image) }}
-                        </span>
+                        <span class="file-name" id="file-name"></span>
                     </div>
 
-                    <div class="product-detail__image-errors"  id="image-errors">
+                    <div class="product-detail__image-errors" id="image-errors">
                         @foreach ($errors->get('image') as $message)
                             <p class="form__error">{{ $message }}</p>
                         @endforeach
@@ -113,13 +111,13 @@
 
             <div class="product-detail__actions">
                 <div class="product-detail__main-buttons">
-                    <a href="{{ route('products.index') }}" class="button button--back">戻る</a>
+                    <a href="/products" class="button button--back">戻る</a>
                     <button type="submit" class="button button--save">変更を保存</button>
                 </div>
             </div>
         </form>
 
-        @if (!session()->hasOldInput())
+        @if (!$errors->any())
             <form
                 class="product-detail__delete-form"
                 action="{{ route('products.destroy', $product->id) }}"
@@ -148,33 +146,47 @@
             const fileName = document.getElementById("file-name");
             const previewImage = document.getElementById("preview-image");
             const imageErrors = document.getElementById("image-errors");
+            const imageWrapper = document.querySelector(".product-detail__image-wrapper");
+            const imageArea = document.querySelector(".product-detail__image-area");
+            const originalImageSrc = "{{ asset('storage/' . $product->image) }}";
+            const originalImageAlt = "{{ $product->name }}";
 
-            if (!fileInput || !fileName || !previewImage) {
+            if (!fileInput || !fileName || !previewImage || !imageWrapper || !imageArea) {
                 return;
             }
 
             fileInput.addEventListener("change", function () {
-                if (fileInput.files.length > 0) {
-                    const file = fileInput.files[0];
-                    fileName.textContent = file.name;
+                if (fileInput.files.length === 0) {
+                    fileName.textContent = "";
+                    previewImage.src = originalImageSrc;
+                    previewImage.alt = originalImageAlt;
+                    imageWrapper.classList.remove("product-detail__image-wrapper--empty");
+                    imageArea.classList.remove("product-detail__image-area--error");
+                    return;
+                }
 
-                    const imageURL = URL.createObjectURL(file);
-                    previewImage.src = imageURL;
+                const file = fileInput.files[0];
+                fileName.textContent = file.name;
 
-                    const wrapper = previewImage.closest('.product-detail__image-wrapper');
-                    const imageArea = previewImage.closest('.product-detail__image-area');
+                const allowedTypes = ["image/png", "image/jpeg"];
 
-                    if (wrapper) {
-                        wrapper.classList.remove('product-detail__image-wrapper--empty');
-                    }
+                if (!allowedTypes.includes(file.type)) {
+                    previewImage.src = "";
+                    previewImage.alt = "";
+                    imageWrapper.classList.add("product-detail__image-wrapper--empty");
+                    imageArea.classList.add("product-detail__image-area--error");
+                    return;
+                }
 
-                    if (imageArea) {
-                        imageArea.classList.remove('product-detail__image-area--error');
-                    }
+                const imageURL = URL.createObjectURL(file);
+                previewImage.src = imageURL;
+                previewImage.alt = file.name;
 
-                    if (imageErrors) {
-                        imageErrors.innerHTML = '';
-                    }
+                imageWrapper.classList.remove("product-detail__image-wrapper--empty");
+                imageArea.classList.remove("product-detail__image-area--error");
+
+                if (imageErrors) {
+                    imageErrors.innerHTML = "";
                 }
             });
         });
