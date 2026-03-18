@@ -13,10 +13,14 @@ class ProductRequest extends FormRequest
 
     public function rules()
     {
+        $imageRules = $this->isMethod('post')
+            ? ['required', 'file', 'mimes:png,jpeg']
+            : ['nullable', 'file', 'mimes:png,jpeg'];
+
         return [
             'name' => ['required', 'string'],
             'price' => ['required', 'integer', 'min:0', 'max:10000'],
-            'image' => ['nullable', 'file', 'mimes:png,jpeg'],
+            'image' => $imageRules,
             'seasons' => ['required', 'array'],
             'description' => ['required', 'string', 'max:120'],
         ];
@@ -32,6 +36,7 @@ class ProductRequest extends FormRequest
             'price.min' => '0-10000円以内で入力してください',
             'price.max' => '0-10000円以内で入力してください',
 
+            'image.required' => '商品画像を登録してください',
             'image.mimes' => '「.png」または「.jpeg」形式でアップロードしてください',
 
             'seasons.required' => '季節を選択してください',
@@ -44,14 +49,13 @@ class ProductRequest extends FormRequest
     public function withValidator($validator)
     {
         $validator->after(function ($validator) {
-            if (!$this->hasFile('image')) {
-                $validator->errors()->add('image', '商品画像を登録してください');
-                $validator->errors()->add('image', '「.png」または「.jpeg」形式でアップロードしてください');
-            }
-
             if (!$this->filled('price')) {
                 $validator->errors()->add('price', '数値で入力してください');
                 $validator->errors()->add('price', '0-10000円以内で入力してください');
+            }
+
+            if ($this->isMethod('post') && !$this->hasFile('image')) {
+                $validator->errors()->add('image', '「.png」または「.jpeg」形式でアップロードしてください');
             }
 
             if (!$this->filled('description')) {
