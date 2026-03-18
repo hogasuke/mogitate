@@ -7,7 +7,7 @@
 @section('content')
     <div class="product-detail">
         <div class="product-detail__breadcrumb">
-            <a href="/products">商品一覧</a>
+            <a href="{{ route('products.index') }}">商品一覧</a>
             <span>></span>
             <span>{{ $product->name }}</span>
         </div>
@@ -113,7 +113,7 @@
 
             <div class="product-detail__actions">
                 <div class="product-detail__main-buttons">
-                    <a href="/products" class="button button--back">戻る</a>
+                    <a href="{{ route('products.index') }}" class="button button--back">戻る</a>
                     <button type="submit" class="button button--save">変更を保存</button>
                 </div>
             </div>

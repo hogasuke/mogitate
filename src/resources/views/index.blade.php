@@ -14,12 +14,12 @@
                     商品一覧
                 @endif
             </h2>
-            <button class="product-register-button" onclick="location.href='/products/register'">+ 商品を追加</button>
+            <button class="product-register-button" onclick="location.href='{{ route('products.create') }}'">+ 商品を追加</button>
         </div>
 
         <div class="product__wrapper">
             <aside class="sidebar">
-                <form class="search-form" action="/products" method="get">
+                <form class="search-form" action="{{ route('products.index') }}" method="get">
                     <input type="hidden" name="sort" value="{{ request('sort') }}">
                     <div class="search-form__group">
                         <input class="search-form__input" type="text" name="keyword" placeholder="商品名で検索" value="{{ request('keyword') }}">
@@ -27,7 +27,7 @@
                     <button class="search-form__button" type="submit">検索</button>
                 </form>
 
-                <form class="sort-form" action="/products" method="get">
+                <form class="sort-form" action="{{ route('products.index') }}" method="get">
                     <input type="hidden" name="keyword" value="{{ request('keyword') }}">
                     <h3 class="sort-form__title">価格順で表示</h3>
                     <select class="sort-form__select" name="sort" required onchange="this.form.submit()">
@@ -40,7 +40,7 @@
                             <span class="sort-tag__text">
                                 {{ request('sort') === 'asc' ? '低い順に表示' : '高い順に表示' }}
                             </span>
-                            <a class="sort-tag__remove" href="{{ request('keyword') ? '/products?keyword=' . urlencode(request('keyword')) : '/products' }}">
+                            <a class="sort-tag__remove" href="{{ request('keyword') ? route('products.index') . '?keyword=' . urlencode(request('keyword')) : route('products.index') }}">
                                 ×
                             </a>
                         </div>
@@ -51,7 +51,7 @@
             <div class="main-content">
                 <div class="product-list">
                     @foreach ($products as $product)
-                        <a href="/products/detail/{{ $product->id }}" class="product-card-link">
+                        <a href="{{ route('products.detail', $product->id) }}" class="product-card-link">
                             <div class="product-card">
                                 <div class="product-card__image-wrapper">
                                     <img
