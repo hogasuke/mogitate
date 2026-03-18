@@ -254,6 +254,7 @@
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
+    transform: translateY(-6px);
 }
 
 .button--back:hover,
@@ -294,8 +295,8 @@
 }
 
 .delete-icon {
-    width: 36px;
-    height: 36px;
+    width: 34px;
+    height: 34px;
     color: #ff3b30;
     display: block;
 }
@@ -371,12 +372,14 @@
     }
 
     .product-detail__delete-form {
-        position: static;
-        justify-content: center;
-        margin-top: 12px;
+        position: absolute;
+        right: 0;
+        bottom: 34px;
+        display: flex;
+        justify-content: flex-end;
     }
 
     .button {
         min-width: 160px;
     }
-}
+} 

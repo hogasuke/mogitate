@@ -20,14 +20,17 @@ class ProductController extends Controller
         } elseif ($request->sort === 'desc') {
             $query->orderBy('price', 'desc');
         }
+
         $products = $query->paginate(6)->appends($request->query());
+
         return view('index', compact('products'));
     }
 
-    public function detail($product)
+    public function detail(Product $product)
     {
-        $product = Product::with('seasons')->findOrFail($product);
+        $product->load('seasons');
         $seasons = Season::all();
+
         return view('detail', compact('product', 'seasons'));
     }
 
@@ -44,14 +47,15 @@ class ProductController extends Controller
         }
         $product->update($data);
         $product->seasons()->sync($request->seasons ?? []);
-        return redirect('/products' . $product->id);
+
+        return redirect()->route('products.index');
     }
 
     public function destroy(Product $product)
     {
         $product->seasons()->detach();
         $product->delete();
-        return redirect('/products');
+        return redirect()->route('products.index');
     }
     public function create()
     {
@@ -69,6 +73,6 @@ class ProductController extends Controller
             'description'=> $request->description,
         ]);
         $product->seasons()->sync($request->seasons);
-        return redirect('/products');
+        return redirect()->route('products.index');
     }
 }
