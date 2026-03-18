@@ -37,7 +37,7 @@
                         </span>
                     </div>
 
-                    <div class="product-detail__image-errors">
+                    <div class="product-detail__image-errors"  id="image-errors">
                         @foreach ($errors->get('image') as $message)
                             <p class="form__error">{{ $message }}</p>
                         @endforeach
@@ -147,6 +147,7 @@
             const fileInput = document.getElementById("image-input");
             const fileName = document.getElementById("file-name");
             const previewImage = document.getElementById("preview-image");
+            const imageErrors = document.getElementById("image-errors");
 
             if (!fileInput || !fileName || !previewImage) {
                 return;
@@ -169,6 +170,10 @@
 
                     if (imageArea) {
                         imageArea.classList.remove('product-detail__image-area--error');
+                    }
+
+                    if (imageErrors) {
+                        imageErrors.innerHTML = '';
                     }
                 }
             });
