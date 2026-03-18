@@ -9,7 +9,7 @@
         <div class="product-register__heading">
             <h2>商品登録</h2>
         </div>
-        <form class="form" action="/products/register" method="post" enctype="multipart/form-data">
+        <form class="form" action="/products/register" method="post" enctype="multipart/form-data" @submit.prevent novalidate>
             @csrf
             <div class="form__group">
                 <div class="form__group-title">
