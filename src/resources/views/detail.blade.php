@@ -30,7 +30,7 @@
                     <div class="product-detail__file">
                         <label class="file-button">
                             ファイルを選択
-                            <input type="file" name="image" id="image-input" accept=".png,.jpeg,image/png,image/jpeg">
+                            <input type="file" name="image" id="image-input" accept="image/*">
                         </label>
                         <span class="file-name" id="file-name"></span>
                     </div>
